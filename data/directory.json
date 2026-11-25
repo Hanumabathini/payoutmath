@@ -1,0 +1,380 @@
+[
+  {
+    "name": "eBay",
+    "category": "Reselling",
+    "path": "ebay-fee-calculator/",
+    "status": "sourced-preset"
+  },
+  {
+    "name": "Poshmark",
+    "category": "Reselling",
+    "path": "poshmark-fee-calculator/",
+    "status": "sourced-preset"
+  },
+  {
+    "name": "Mercari",
+    "category": "Reselling",
+    "path": "mercari-fee-calculator/",
+    "status": "sourced-preset"
+  },
+  {
+    "name": "Depop",
+    "category": "Reselling",
+    "path": "depop-fee-calculator/",
+    "status": "sourced-preset"
+  },
+  {
+    "name": "Vinted",
+    "category": "Reselling",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Whatnot",
+    "category": "Reselling",
+    "path": "whatnot-fee-calculator/",
+    "status": "sourced-preset"
+  },
+  {
+    "name": "Grailed",
+    "category": "Reselling",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "StockX",
+    "category": "Reselling",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "GOAT",
+    "category": "Reselling",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Vestiaire Collective",
+    "category": "Reselling",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Amazon",
+    "category": "E-commerce",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Etsy",
+    "category": "E-commerce",
+    "path": "etsy-fee-calculator/",
+    "status": "sourced-preset"
+  },
+  {
+    "name": "Shopify",
+    "category": "E-commerce",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Walmart Marketplace",
+    "category": "E-commerce",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "TikTok Shop",
+    "category": "E-commerce",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "WooCommerce",
+    "category": "E-commerce",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "BigCommerce",
+    "category": "E-commerce",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Ecwid",
+    "category": "E-commerce",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Flipkart",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Meesho",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Shopee",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Lazada",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Mercado Libre",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Rakuten",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Allegro",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Alibaba",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "AliExpress",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Noon",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Trendyol",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Coupang",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Tokopedia",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Carousell",
+    "category": "International",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "PayPal",
+    "category": "Payments",
+    "path": "paypal-fee-calculator/",
+    "status": "sourced-preset"
+  },
+  {
+    "name": "Stripe",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Square",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Razorpay",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Payoneer",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Wise",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Adyen",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Braintree",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Mollie",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Paystack",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Flutterwave",
+    "category": "Payments",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Fiverr",
+    "category": "Freelance",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Upwork",
+    "category": "Freelance",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Freelancer",
+    "category": "Freelance",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "PeoplePerHour",
+    "category": "Freelance",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Contra",
+    "category": "Freelance",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "YouTube",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Patreon",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Twitch",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Substack",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Ko-fi",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Gumroad",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Buy Me a Coffee",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Udemy",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Teachable",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Thinkific",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Lemon Squeezy",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Paddle",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Creative Market",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Fourthwall",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  },
+  {
+    "name": "Bandcamp",
+    "category": "Creators and digital products",
+    "path": null,
+    "status": "research-needed"
+  }
+]
