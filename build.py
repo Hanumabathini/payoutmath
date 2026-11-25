@@ -290,7 +290,7 @@ def build():
 {cta()}
 <h2>Quick answers</h2><p class=note>{popular}</p>
 {faq_html(qa)}"""
-    page("", f"Seller Fee Calculator {YEAR}: eBay, Poshmark, Mercari, Depop, Etsy, Whatnot", desc, body,
+    page("", f"Seller Fee Calculator {YEAR}: eBay, Poshmark, Mercari, Depop & More", desc, body,
          [app_schema("PayoutMath seller fee calculator", "", desc), faq_schema(qa),
           {"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": abs_url("")}])
 
@@ -317,18 +317,22 @@ def build():
 {cta()}""", crumbs=[("Home", ""), ("Profit tracker", "reseller-profit-tracker/")])
 
     # ---- about / privacy / 404
-    page("about/", f"About {BRAND}", f"{BRAND} is a free fee calculator for resellers.",
+    page("about/", f"About {BRAND}", f"{BRAND} is a free set of seller fee and profit calculators for eBay, Poshmark, Mercari, Depop, Etsy and Whatnot resellers. Here is where the numbers come from.",
          f"""<h1>About {BRAND}</h1><p>{BRAND} is a free set of seller fee calculators for people who resell on eBay, Poshmark, Mercari, Depop, Etsy and Whatnot.</p>
 <p>Every fee comes from the platform's own published fee page where one is available, and each page says where its numbers came from and when they were last checked. The math runs in your browser; nothing you type is sent anywhere.</p>
 <p>{BRAND} isn't affiliated with any of the marketplaces it covers.</p>""", crumbs=[("Home", ""), ("About", "about/")])
-    page("privacy/", f"Privacy policy | {BRAND}", f"How {BRAND} handles data.",
+    page("privacy/", f"Privacy policy | {BRAND}", f"How {BRAND} handles your data: the calculators run in your browser, nothing you type is stored, and some links are affiliate links.",
          f"""<h1>Privacy policy</h1><p>Last updated {CHECKED}.</p>
 <p>The calculators run entirely in your browser. The numbers you enter aren't sent to us or stored on a server.</p>
 <p>We may use privacy-friendly analytics to count page views, and in the future third-party advertising partners such as Google may use cookies to show ads. If that happens this page will be updated and you'll be able to opt out of personalised ads at Google's Ads Settings.</p>
 <p>Some links are affiliate links. If you sign up through them we may earn a commission; the partner may set its own cookie to record the referral.</p>""",
          crumbs=[("Home", ""), ("Privacy", "privacy/")])
-    (DIST / "404.html").write_text((DIST / "about/index.html").read_text().replace(
-        f"<h1>About {BRAND}</h1>", f"<h1>Page not found</h1><p><a href='{url('')}'>Go to the fee calculator</a></p><h2>About {BRAND}</h2>", 1))
+    import re as _re
+    nf = (DIST / "about/index.html").read_text().replace(
+        f"<h1>About {BRAND}</h1>", f"<h1>Page not found</h1><p><a href='{url('')}'>Go to the fee calculator</a></p><h2>About {BRAND}</h2>", 1)
+    nf = _re.sub(r"<title>.*?</title>", f"<title>Page not found | {BRAND}</title>", nf, count=1)
+    nf = _re.sub(r'<link rel="canonical"[^>]*>', '<meta name="robots" content="noindex">', nf, count=1)
+    (DIST / "404.html").write_text(nf)
 
     # ---- sitemap / robots
     today = datetime.date.today().isoformat()

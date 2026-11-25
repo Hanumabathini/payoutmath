@@ -3,6 +3,8 @@
    build script and the pages use the exact same math. */
 (function (root) {
   var r2 = function (n) { return Math.round((n + Number.EPSILON) * 100) / 100; };
+  // Own-key lookup so a key like "__proto__" from the URL can never match.
+  var own = function (o, k) { return o && Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined; };
 
   function tiered(amount, tiers) {
     // tiers: [[upTo|null, rate], ...]
@@ -21,7 +23,7 @@
   // payout = money the platform pays you before your own costs.
   var fns = {
     ebay: function (F, x) {
-      var c = F.categories[x.ebayCat] || F.categories.most;
+      var c = own(F.categories, x.ebayCat) || F.categories.most;
       var total = x.price + x.ship + x.taxAmt;
       var fvf = tiered(total, c.tiers);
       var lines = [["Final value fee", fvf]];
@@ -56,7 +58,7 @@
       return lines;
     },
     whatnot: function (F, x) {
-      var c = F.categories[x.wnCat] || F.categories.most;
+      var c = own(F.categories, x.wnCat) || F.categories.most;
       var base = c.zero_above ? Math.min(x.price, c.zero_above) : x.price;
       var total = x.price + x.ship + x.taxAmt;
       return [
@@ -65,7 +67,7 @@
       ];
     },
     paypal: function (F, x) {
-      var m = F.modes[x.ppMode] || F.modes.gs;
+      var m = own(F.modes, x.ppMode) || F.modes.gs;
       var total = x.price + x.ship;
       var rate = m.rate + (x.intl ? F.intl : 0);
       return [["PayPal fee (" + r2(rate * 100) + "%" + (m.fixed ? " + $" + m.fixed.toFixed(2) : "") + ")", total * rate + m.fixed]];
@@ -88,7 +90,8 @@
     var F = FEES.platforms[key];
     // Poshmark buyers pay a prepaid label, so shipping never passes through the seller.
     if (key === "poshmark") { x.ship = 0; x.shipCost = 0; x.taxAmt = 0; }
-    var lines = fns[key](F, x).map(function (l) { return [l[0], r2(l[1])]; });
+    // Nothing sold, nothing charged.
+    var lines = x.price <= 0 ? [] : fns[key](F, x).map(function (l) { return [l[0], r2(l[1])]; });
     var fees = r2(lines.reduce(function (s, l) { return s + l[1]; }, 0));
     var payout = r2(x.price + x.ship - fees);
     var profit = r2(payout - x.cost - x.shipCost);
@@ -104,7 +107,7 @@
 
   // Lowest sale price that reaches a target profit (bisection; fees are monotonic in price).
   function priceFor(FEES, key, input, target) {
-    var lo = 0, hi = 100000, base = {};
+    var lo = 0, hi = 1e7, base = {};
     for (var k in input) base[k] = input[k];
     for (var i = 0; i < 60; i++) {
       var mid = (lo + hi) / 2; base.price = mid;
