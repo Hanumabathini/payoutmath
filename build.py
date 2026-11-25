@@ -141,6 +141,7 @@ def page(path, title, desc, body, schema=None, crumbs=None):
 <p><a href="{url('about/')}">About</a> · <a href="{url('privacy/')}">Privacy</a> · <a href="{url('marketplace-fees/')}">Fee sources</a></p>
 <p class="note">Some links are affiliate links: if you sign up through them we may earn a commission at no cost to you.</p>
 </div></footer>
+<script defer src="{url('motion.js')}"></script>
 </body></html>"""
     out = DIST / path / "index.html" if path else DIST / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -194,7 +195,7 @@ def build():
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
-    for f in ("calc.js", "ui.js", "style.css"):
+    for f in ("calc.js", "ui.js", "style.css", "motion.js"):
         shutil.copy(ROOT / "src" / f, DIST / f)
     (DIST / "fees.js").write_text("window.FEES=" + json.dumps(FEES, separators=(",", ":")) + ";")
     (DIST / "favicon.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0f7b5f"/><text x="16" y="22" font-size="18" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="700">$</text></svg>')
