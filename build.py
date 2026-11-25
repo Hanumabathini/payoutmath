@@ -131,7 +131,7 @@ def page(path, title, desc, body, schema=None, crumbs=None):
 {gsc}
 {ld}</head><body>
 <header class="site"><div class="wrap"><a class="logo" href="{url('')}">Payout<span>Math</span></a>
-<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
+<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('worldwide/')}">Worldwide calculator</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
 {crumb_html}
 <main class="wrap">
 {body}
@@ -292,6 +292,7 @@ def build():
 <p class=lede>Put in one sale and see what eBay, Poshmark, Mercari, Depop, Etsy and Whatnot each take, and what you actually profit. Free, no sign-up, fees checked {CHECKED}.</p>
 {calc_block('compare', None, 'Your sale')}
 <p class=note>Comparison uses publicly described US starting-tier marketplace rates. Actual Whatnot commissions vary by seller volume, category, market, and promotions; compare the personalized figure on its calculator using your Seller Hub rate.</p>
+<p class=note><a href="{url('worldwide/')}">Selling outside the United States? Open the worldwide calculator for verified Etsy bank-country processing rates or a custom fee scenario. US presets above are not global rates.</a></p>
 <h2>Fee calculator for each marketplace</h2><ul class=grid-links>{links}</ul>
 {cta()}
 <h2>Quick answers</h2><p class=note>{popular}</p>
@@ -339,6 +340,9 @@ def build():
     nf = _re.sub(r"<title>.*?</title>", f"<title>Page not found | {BRAND}</title>", nf, count=1)
     nf = _re.sub(r'<link rel="canonical"[^>]*>', '<meta name="robots" content="noindex">', nf, count=1)
     (DIST / "404.html").write_text(nf)
+
+    from worldwide import build_worldwide
+    build_worldwide(page, url, ROOT, DIST, CHECKED)
 
     # ---- sitemap / robots
     today = datetime.date.today().isoformat()
