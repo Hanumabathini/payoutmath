@@ -131,7 +131,7 @@ def page(path, title, desc, body, schema=None, crumbs=None):
 {gsc}
 {ld}</head><body>
 <header class="site"><div class="wrap"><a class="logo" href="{url('')}">Payout<span>Math</span></a>
-<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('worldwide/')}">Worldwide calculator</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
+<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('worldwide/')}">Worldwide calculator</a><a href="{url('selling-costs/')}">Selling costs</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
 {crumb_html}
 <main class="wrap">
 {body}
@@ -293,6 +293,7 @@ def build():
 {calc_block('compare', None, 'Your sale')}
 <p class=note>Comparison uses publicly described US starting-tier marketplace rates. Actual Whatnot commissions vary by seller volume, category, market, and promotions; compare the personalized figure on its calculator using your Seller Hub rate.</p>
 <p class=note><a href="{url('worldwide/')}">Selling outside the United States? Open the worldwide calculator for verified Etsy bank-country processing rates or a custom fee scenario. US presets above are not global rates.</a></p>
+<p class=note><a href="{url('selling-costs/')}">Model shipping, packaging, discounts and returns with our selling-costs planner.</a> Rates must come from your seller statement.</p>
 <h2>Fee calculator for each marketplace</h2><ul class=grid-links>{links}</ul>
 {cta()}
 <h2>Quick answers</h2><p class=note>{popular}</p>
@@ -341,6 +342,8 @@ def build():
     nf = _re.sub(r'<link rel="canonical"[^>]*>', '<meta name="robots" content="noindex">', nf, count=1)
     (DIST / "404.html").write_text(nf)
 
+    from seller_scenarios import build_seller_scenarios
+    build_seller_scenarios(page, url, ROOT, DIST, CHECKED)
     from worldwide import build_worldwide
     build_worldwide(page, url, ROOT, DIST, CHECKED)
 
