@@ -7,8 +7,8 @@ fee engine the browser uses, so every number printed on a page matches the
 live calculator).
 
 Config through environment variables:
-  SITE_URL      full public URL, no trailing slash   (default https://payoutmath.pages.dev)
-  BASE_PATH     path prefix if served from a sub-folder, e.g. /payoutmath (default empty)
+  SITE_URL      site origin, no trailing slash   (default https://hanumabathini.github.io)
+  BASE_PATH     path prefix of the site (default /payoutmath; set to / on your own domain)
   CROSSLIST_URL affiliate link for Crosslist once the account exists (default plain site)
   GSC_TOKEN     Google Search Console verification token (optional)
 """
@@ -18,8 +18,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DIST = ROOT / "dist"
 FEES = json.loads((ROOT / "data/fees.json").read_text())
-SITE_URL = (os.environ.get("SITE_URL") or "https://payoutmath.pages.dev").rstrip("/")
-BASE = (os.environ.get("BASE_PATH") or "").rstrip("/")
+SITE_URL = (os.environ.get("SITE_URL") or "https://hanumabathini.github.io").rstrip("/")
+BASE = (os.environ.get("BASE_PATH") or "/payoutmath").rstrip("/")
 CROSSLIST_URL = os.environ.get("CROSSLIST_URL") or "https://crosslist.com/"
 GSC = os.environ.get("GSC_TOKEN", "")
 BRAND = "PayoutMath"

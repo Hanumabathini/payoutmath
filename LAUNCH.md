@@ -6,17 +6,12 @@ Only four steps need you, because each one needs your own account. Do them in or
 
 ## Step 1. Put the site online (GitHub Pages, free)
 
-1. Sign in to GitHub and create a new **public** repository named `payoutmath`. Leave it empty (no README).
-2. Upload everything in this `payoutmath` folder **except `dist/`** to that repository. The `.github` folder must go too, because it holds the automation.
-   - Easiest way: on the empty repository page, choose "uploading an existing file" and drag the folder contents in.
-   - Or tell me the repository name and I can push it for you once you connect it to this project.
-3. In the repository, open **Settings > Pages** and set **Source** to **GitHub Actions**.
-4. Open **Settings > Secrets and variables > Actions > Variables** and add:
-   - `SITE_URL` = `https://YOUR-GITHUB-NAME.github.io`
-   - `BASE_PATH` = `/payoutmath`
-5. Open the **Actions** tab, pick **Deploy site**, and press **Run workflow**. About two minutes later the site is live at `https://YOUR-GITHUB-NAME.github.io/payoutmath/`.
+The code is already in your public `payoutmath` repository, and it's set up for `https://hanumabathini.github.io/payoutmath/`.
 
-If you later buy your own domain, set `SITE_URL` to it and delete `BASE_PATH`.
+1. In the repository, open **Settings > Pages** and set **Source** to **GitHub Actions**.
+2. Open the **Actions** tab, pick **Deploy site**, and press **Run workflow**. About two minutes later the site is live at `https://hanumabathini.github.io/payoutmath/`.
+
+If you later buy your own domain, add two repository variables (**Settings > Secrets and variables > Actions > Variables**): `SITE_URL` set to the domain, like `https://payoutmath.com`, and `BASE_PATH` set to `/`.
 
 ## Step 2. Set up how you get paid (Crosslist affiliate)
 
@@ -31,7 +26,7 @@ When you have your affiliate link, add one more repository variable, `CROSSLIST_
 
 ## Step 3. Tell Google and Bing the site exists (free)
 
-1. Go to Google Search Console, add the site as a **URL prefix** property (`https://YOUR-GITHUB-NAME.github.io/payoutmath/`) and choose the **HTML tag** method.
+1. Go to Google Search Console, add the site as a **URL prefix** property (`https://hanumabathini.github.io/payoutmath/`) and choose the **HTML tag** method.
 2. Copy only the long code inside `content="..."` and save it as a repository variable named `GSC_TOKEN`. Run **Deploy site** again, then press **Verify** in Search Console.
 3. In Search Console, open **Sitemaps** and submit `sitemap.xml`.
 4. In Bing Webmaster Tools, choose **Import from Google Search Console**. That covers Bing, DuckDuckGo and Yahoo.
