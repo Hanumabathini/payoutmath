@@ -25,7 +25,12 @@
     ebay: function (F, x) {
       var c = own(F.categories, x.ebayCat) || F.categories.most;
       var total = x.price + x.ship + x.taxAmt;
-      var fvf = tiered(total, c.tiers);
+      var fvf;
+      if (c.whole_sale) {
+        // One rate on the whole sale, chosen by the sale's size (e.g. handbags).
+        var t = c.tiers.filter(function (r) { return r[0] === null || total <= r[0]; })[0];
+        fvf = total * t[1];
+      } else fvf = tiered(total, c.tiers);
       var lines = [["Final value fee", fvf]];
       if (c.per_order) lines.push(["Per-order fee", total > 10 ? 0.40 : 0.30]);
       if (x.adRate > 0) lines.push(["Promoted listing ad fee (" + r2(x.adRate * 100) + "%)", total * x.adRate]);

@@ -10,25 +10,128 @@
       "source_note": "eBay Seller Center, seller fees page",
       "summary": "13.6% of the total sale amount (item + shipping + sales tax) up to $7,500, plus $0.30 per order ($0.40 if the order is over $10).",
       "categories": {
-        "most": {"label": "Most categories", "tiers": [[7500, 0.136], [null, 0.0235]], "per_order": true},
-        "sneakers150": {"label": "Sneakers over $150", "tiers": [[null, 0.08]], "per_order": false},
-        "cards": {"label": "Trading cards", "tiers": [[7500, 0.1325], [null, 0.0235]], "per_order": true},
-        "books": {"label": "Books, movies, music (not vinyl)", "tiers": [[7500, 0.153], [null, 0.0235]], "per_order": true},
-        "guitars": {"label": "Guitars and basses", "tiers": [[7500, 0.067], [null, 0.0235]], "per_order": true},
-        "bags": {"label": "Women's bags", "tiers": [[2000, 0.15], [null, 0.09]], "per_order": true},
-        "watches": {"label": "Watches, parts and accessories", "tiers": [[1000, 0.15], [7500, 0.065], [null, 0.03]], "per_order": true}
+        "most": {
+          "label": "Most categories",
+          "tiers": [
+            [
+              7500,
+              0.136
+            ],
+            [
+              null,
+              0.0235
+            ]
+          ],
+          "per_order": true
+        },
+        "sneakers150": {
+          "label": "Sneakers over $150",
+          "tiers": [
+            [
+              null,
+              0.08
+            ]
+          ],
+          "per_order": false
+        },
+        "cards": {
+          "label": "Trading cards",
+          "tiers": [
+            [
+              7500,
+              0.1325
+            ],
+            [
+              null,
+              0.0235
+            ]
+          ],
+          "per_order": true
+        },
+        "books": {
+          "label": "Books, movies, music (not vinyl)",
+          "tiers": [
+            [
+              7500,
+              0.153
+            ],
+            [
+              null,
+              0.0235
+            ]
+          ],
+          "per_order": true
+        },
+        "guitars": {
+          "label": "Guitars and basses",
+          "tiers": [
+            [
+              7500,
+              0.067
+            ],
+            [
+              null,
+              0.0235
+            ]
+          ],
+          "per_order": true
+        },
+        "bags": {
+          "label": "Women's bags",
+          "tiers": [
+            [
+              2000,
+              0.15
+            ],
+            [
+              null,
+              0.09
+            ]
+          ],
+          "per_order": true,
+          "whole_sale": true,
+          "note": "One rate on the whole sale: 15% if the total is $2,000 or less, 9% if it is over $2,000."
+        },
+        "watches": {
+          "label": "Watches, parts and accessories",
+          "tiers": [
+            [
+              1000,
+              0.15
+            ],
+            [
+              7500,
+              0.065
+            ],
+            [
+              null,
+              0.03
+            ]
+          ],
+          "per_order": true
+        }
       },
-      "monitor_strings": ["13.6%", "2.35%", "$0.30", "$0.40"]
+      "monitor_strings": [
+        "13.6%",
+        "2.35%",
+        "$0.30",
+        "$0.40"
+      ]
     },
     "poshmark": {
       "name": "Poshmark",
       "slug": "poshmark-fee-calculator",
       "keyword": "Poshmark fee calculator",
-      "source": "https://crosslist.com/blog/poshmark-selling-fees",
-      "source_note": "Poshmark's own fee page could not be read; this rule is confirmed by several 2026 seller guides. Verify in the Poshmark app before launch.",
+      "source": "https://poshmark.com/posh_guide/get_started_on_poshmark",
+      "source_note": "Poshmark's Posh Guide, getting started",
       "summary": "A flat $2.95 on sales under $15, and 20% of the sale price on sales of $15 or more. Buyers pay the shipping label.",
-      "flat_under": 15, "flat_fee": 2.95, "rate": 0.20,
-      "monitor_strings": ["20%", "$2.95"]
+      "flat_under": 15,
+      "flat_fee": 2.95,
+      "rate": 0.2,
+      "monitor_strings": [
+        "20%",
+        "$2.95"
+      ]
     },
     "mercari": {
       "name": "Mercari",
@@ -37,19 +140,27 @@
       "source": "https://www.mercari.com/us/help_center/article/2517",
       "source_note": "Mercari Help Center, fee structure (effective Jan 6, 2025)",
       "summary": "A flat 10% of the item price plus any shipping the buyer pays. No separate payment processing fee. Instant Pay withdrawals cost $3.",
-      "rate": 0.10,
-      "monitor_strings": ["10%"]
+      "rate": 0.1,
+      "monitor_strings": [
+        "10%"
+      ]
     },
     "depop": {
       "name": "Depop",
       "slug": "depop-fee-calculator",
       "keyword": "Depop fee calculator",
-      "source": "https://blog.depop.com/articles/us-depop-fee-change",
-      "source_note": "Depop's US fee change announcement",
+      "source": "https://depophelp.zendesk.com/hc/en-gb/articles/360001791127-Seller-fees-and-charges",
+      "source_note": "Depop Help Centre, seller fees and charges",
       "summary": "No selling fee in the US. Payment processing is 3.3% + $0.45 on the full transaction (item + shipping + tax). Boosted listings add a boost fee if the item sells through the boost.",
-      "proc_rate": 0.033, "proc_fixed": 0.45, "boost_default": 0.12,
-      "boost_note": "Boost rate as reported by 2026 seller guides; check the rate shown in your Depop app.",
-      "monitor_strings": ["3.3%", "0.45"]
+      "proc_rate": 0.033,
+      "proc_fixed": 0.45,
+      "boost_default": 0.12,
+      "boost_note": "Depop's Boosted Listings Policy (effective March 23, 2026) sets the boost fee at 12% of the item price. It isn't charged on Depop shipping labels or on tax.",
+      "monitor_strings": [
+        "3.3%",
+        "0.45"
+      ],
+      "boost_source": "https://depophelp.zendesk.com/hc/en-gb/articles/9253129255569-Boosted-Listings-Policy"
     },
     "etsy": {
       "name": "Etsy",
@@ -59,9 +170,19 @@
       "source_note": "Etsy Fees & Payments Policy (updated Oct 5, 2026) and Etsy Payments Policy (updated Jul 31, 2026)",
       "source2": "https://www.etsy.com/legal/etsy-payments/",
       "summary": "$0.20 listing fee, 6.5% transaction fee on item + shipping, and 3% + $0.25 payment processing on the order total including tax. Offsite Ads add 15% (12% for shops over $10k a year), capped at $100 per order.",
-      "listing": 0.20, "txn_rate": 0.065, "proc_rate": 0.03, "proc_fixed": 0.25,
-      "offsite_rate": 0.15, "offsite_rate_big": 0.12, "offsite_cap": 100,
-      "monitor_strings": ["6.5%", "0.20", "15%", "12%"]
+      "listing": 0.2,
+      "txn_rate": 0.065,
+      "proc_rate": 0.03,
+      "proc_fixed": 0.25,
+      "offsite_rate": 0.15,
+      "offsite_rate_big": 0.12,
+      "offsite_cap": 100,
+      "monitor_strings": [
+        "6.5%",
+        "0.20",
+        "15%",
+        "12%"
+      ]
     },
     "whatnot": {
       "name": "Whatnot",
@@ -69,30 +190,67 @@
       "keyword": "Whatnot fee calculator",
       "source": "https://help.whatnot.com/hc/en-us/articles/4847069165965-Whatnot-s-Selling-and-Processing-Fees",
       "source_note": "Whatnot Help Center, selling and processing fees",
-      "summary": "8% commission on the sale price (not shipping or tax), plus 2.9% + $0.30 processing on the full order total. Some collectible categories pay 0% commission above $1,500.",
+      "summary": "8% commission on the sale price (not shipping or tax), plus 2.9% + $0.30 processing on the full order total. For now, comics, trading cards, sports singles, toys and coins pay 0% commission on the part of a sale above $1,500.",
       "categories": {
-        "most": {"label": "Most categories", "rate": 0.08, "zero_above": null},
-        "collectibles": {"label": "Comics, TCG, sports singles, toys and hobbies", "rate": 0.08, "zero_above": 1500},
-        "coins": {"label": "Coins and money", "rate": 0.04, "zero_above": 1500}
+        "most": {
+          "label": "Most categories",
+          "rate": 0.08,
+          "zero_above": null
+        },
+        "collectibles": {
+          "label": "Comics, TCG, sports singles, toys and hobbies",
+          "rate": 0.08,
+          "zero_above": 1500
+        },
+        "coins": {
+          "label": "Coins and money",
+          "rate": 0.04,
+          "zero_above": 1500
+        }
       },
-      "proc_rate": 0.029, "proc_fixed": 0.30,
-      "monitor_strings": ["8%", "2.9%", "0.30"]
+      "proc_rate": 0.029,
+      "proc_fixed": 0.3,
+      "monitor_strings": [
+        "8%",
+        "2.9%",
+        "0.30"
+      ]
     },
     "paypal": {
       "name": "PayPal",
       "slug": "paypal-fee-calculator",
       "keyword": "PayPal fee calculator",
       "source": "https://www.paypal.com/us/webapps/mpp/merchant-fees",
-      "source_note": "PayPal US merchant fees (updated Nov 23, 2026)",
+      "source_note": "PayPal US merchant fees (updated Nov 4, 2026)",
       "summary": "Goods and services payments sent to you cost 2.99%. PayPal Checkout on a website costs 3.49% + $0.49. International payments add 1.5%.",
       "modes": {
-        "gs": {"label": "Goods and services (sent to you)", "rate": 0.0299, "fixed": 0},
-        "checkout": {"label": "PayPal Checkout or Venmo on a website", "rate": 0.0349, "fixed": 0.49},
-        "cards": {"label": "Card payments through PayPal", "rate": 0.0299, "fixed": 0.49},
-        "paylater": {"label": "Pay Later", "rate": 0.0499, "fixed": 0.49}
+        "gs": {
+          "label": "Goods and services (sent to you)",
+          "rate": 0.0299,
+          "fixed": 0
+        },
+        "checkout": {
+          "label": "PayPal Checkout or Venmo on a website",
+          "rate": 0.0349,
+          "fixed": 0.49
+        },
+        "cards": {
+          "label": "Card payments through PayPal",
+          "rate": 0.0299,
+          "fixed": 0.49
+        },
+        "paylater": {
+          "label": "Pay Later",
+          "rate": 0.0499,
+          "fixed": 0.49
+        }
       },
       "intl": 0.015,
-      "monitor_strings": ["3.49%", "2.99%", "0.49"]
+      "monitor_strings": [
+        "3.49%",
+        "2.99%",
+        "0.49"
+      ]
     }
   }
 }
