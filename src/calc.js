@@ -64,10 +64,13 @@
     },
     whatnot: function (F, x) {
       var c = own(F.categories, x.wnCat) || F.categories.most;
-      var base = c.zero_above ? Math.min(x.price, c.zero_above) : x.price;
+      // Tiered Whatnot commissions: use the seller's actual Seller Hub rate if provided.
+      // Otherwise the category's published entry-tier rate is an *estimate*.
+      var entered = x.wnRate === undefined || x.wnRate === "" ? NaN : Number(x.wnRate);
+      var rate = Number.isFinite(entered) && entered >= 0 && entered <= 100 ? entered / 100 : c.rate;
       var total = x.price + x.ship + x.taxAmt;
       return [
-        ["Commission (" + c.rate * 100 + "%)", base * c.rate],
+        ["Commission (estimated " + r2(rate * 100) + "%)", x.price * rate],
         ["Processing (2.9% + $0.30)", total * F.proc_rate + F.proc_fixed]
       ];
     },

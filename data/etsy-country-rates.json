@@ -1,0 +1,359 @@
+{
+  "checked": "2026-11-25",
+  "scope": "Etsy Payments processing fees by bank account country; not all applicable Etsy charges",
+  "source": "https://help.etsy.com/hc/en-us/articles/115015628847-What-are-Payment-Processing-Fees-for-Selling-on-Etsy",
+  "transactionFeePct": 6.5,
+  "listingFeeUSD": 0.2,
+  "fxConversionPctWhenRequired": 2.5,
+  "regions": [
+    {
+      "code": "US",
+      "country": "United States",
+      "currency": "USD",
+      "domestic": {
+        "percent": 3,
+        "fixed": 0.25
+      },
+      "international": null
+    },
+    {
+      "code": "GB",
+      "country": "United Kingdom",
+      "currency": "GBP",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.2
+      },
+      "international": null
+    },
+    {
+      "code": "CA",
+      "country": "Canada",
+      "currency": "CAD",
+      "domestic": {
+        "percent": 3,
+        "fixed": 0.25
+      },
+      "international": {
+        "percent": 4,
+        "fixed": 0.25
+      }
+    },
+    {
+      "code": "AU",
+      "country": "Australia",
+      "currency": "AUD",
+      "domestic": {
+        "percent": 3,
+        "fixed": 0.25
+      },
+      "international": {
+        "percent": 4,
+        "fixed": 0.25
+      }
+    },
+    {
+      "code": "NZ",
+      "country": "New Zealand",
+      "currency": "NZD",
+      "domestic": {
+        "percent": 3,
+        "fixed": 0.3
+      },
+      "international": {
+        "percent": 4,
+        "fixed": 0.3
+      }
+    },
+    {
+      "code": "IN",
+      "country": "India",
+      "currency": "INR",
+      "domestic": {
+        "percent": 5,
+        "fixed": 25
+      },
+      "international": null
+    },
+    {
+      "code": "DE",
+      "country": "Germany",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "FR",
+      "country": "France",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "IT",
+      "country": "Italy",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "ES",
+      "country": "Spain",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "NL",
+      "country": "Netherlands",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "IE",
+      "country": "Ireland",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "AT",
+      "country": "Austria",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "BE",
+      "country": "Belgium",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "PT",
+      "country": "Portugal",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "SE",
+      "country": "Sweden",
+      "currency": "SEK",
+      "domestic": {
+        "percent": 4,
+        "fixed": 3
+      },
+      "international": null
+    },
+    {
+      "code": "NO",
+      "country": "Norway",
+      "currency": "NOK",
+      "domestic": {
+        "percent": 4,
+        "fixed": 2.5
+      },
+      "international": null
+    },
+    {
+      "code": "DK",
+      "country": "Denmark",
+      "currency": "DKK",
+      "domestic": {
+        "percent": 4,
+        "fixed": 2.5
+      },
+      "international": null
+    },
+    {
+      "code": "CH",
+      "country": "Switzerland",
+      "currency": "CHF",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.5
+      },
+      "international": null
+    },
+    {
+      "code": "PL",
+      "country": "Poland",
+      "currency": "EUR",
+      "domestic": {
+        "percent": 4,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "SG",
+      "country": "Singapore",
+      "currency": "SGD",
+      "domestic": {
+        "percent": 4.4,
+        "fixed": 0.35
+      },
+      "international": null
+    },
+    {
+      "code": "HK",
+      "country": "Hong Kong",
+      "currency": "HKD",
+      "domestic": {
+        "percent": 4.4,
+        "fixed": 2
+      },
+      "international": null
+    },
+    {
+      "code": "MX",
+      "country": "Mexico",
+      "currency": "MXN",
+      "domestic": {
+        "percent": 4.5,
+        "fixed": 8
+      },
+      "international": null
+    },
+    {
+      "code": "ZA",
+      "country": "South Africa",
+      "currency": "ZAR",
+      "domestic": {
+        "percent": 4.5,
+        "fixed": 8
+      },
+      "international": null
+    },
+    {
+      "code": "MY",
+      "country": "Malaysia",
+      "currency": "MYR",
+      "domestic": {
+        "percent": 4.5,
+        "fixed": 2
+      },
+      "international": null
+    },
+    {
+      "code": "PH",
+      "country": "Philippines",
+      "currency": "PHP",
+      "domestic": {
+        "percent": 4.5,
+        "fixed": 25
+      },
+      "international": null
+    },
+    {
+      "code": "ID",
+      "country": "Indonesia",
+      "currency": "IDR",
+      "domestic": {
+        "percent": 4.5,
+        "fixed": 7000
+      },
+      "international": null
+    },
+    {
+      "code": "TR",
+      "country": "Türkiye",
+      "currency": "TRY",
+      "domestic": {
+        "percent": 6.5,
+        "fixed": 14
+      },
+      "international": null
+    },
+    {
+      "code": "IL",
+      "country": "Israel",
+      "currency": "ILS",
+      "domestic": {
+        "percent": 4.5,
+        "fixed": 2
+      },
+      "international": null
+    },
+    {
+      "code": "TH",
+      "country": "Thailand",
+      "currency": "USD",
+      "domestic": {
+        "percent": 6,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "AE",
+      "country": "United Arab Emirates",
+      "currency": "USD",
+      "domestic": {
+        "percent": 6.5,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "KR",
+      "country": "South Korea",
+      "currency": "USD",
+      "domestic": {
+        "percent": 6.5,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "JP",
+      "country": "Japan",
+      "currency": "USD",
+      "domestic": {
+        "percent": 6,
+        "fixed": 0.3
+      },
+      "international": null
+    },
+    {
+      "code": "VN",
+      "country": "Vietnam",
+      "currency": "VND",
+      "domestic": {
+        "percent": 4.5,
+        "fixed": 11500
+      },
+      "international": null
+    }
+  ]
+}

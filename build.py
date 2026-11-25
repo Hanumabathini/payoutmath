@@ -75,9 +75,9 @@ TIPS = {
         "The $0.20 listing fee is charged even if the item never sells, and again on each four-month renewal.",
         "Offsite Ads add 15% (12% once your shop passes $10,000 a year) when a sale comes from an Etsy ad, capped at $100 per order."],
     "whatnot": [
-        "Whatnot's 8% commission is charged on the sale price only, not shipping or tax. Processing is 2.9% + $0.30 on the full order.",
-        "In comics, trading cards, sports singles, and toys and hobbies, commission drops to 0% on the part of a sale above $1,500 (a limited-time rule).",
-        "Coins and money pay a 4% commission up to $1,500."],
+        "Whatnot's tiered selling commission depends on seller volume, market and item category. Your exact rate appears in Seller Hub; 8% is a common starting tier, not a universal rate.",
+        "Processing is normally 2.9% plus $0.30 on the buyer's order total. Seller-specific promotions are not included.",
+        "Enter your rate from Seller Hub below; category defaults are starting-tier estimates, not guaranteed commissions."],
     "paypal": [
         "Goods and services payments sent to you cost 2.99% with no fixed fee.",
         "PayPal Checkout on a website, and Pay with Venmo, cost 3.49% + $0.49 per transaction.",
@@ -92,8 +92,9 @@ OPTIONS = {
         f'<div><label for=boostRate>Boost rate (%)</label><input id=boostRate type=number min=0 step=0.1 value={F["boost_default"]*100:g} inputmode=decimal></div>',
     "etsy": lambda F: '<div><label class=check><input id=offsite type=checkbox> Sale came from Offsite Ads</label></div>'
         '<div><label class=check><input id=bigShop type=checkbox> Shop sells over $10k a year</label></div>',
-    "whatnot": lambda F: '<div class=full><label for=wnCat>Category</label><select id=wnCat>' +
-        "".join(f'<option value="{k}">{esc(v["label"])}</option>' for k, v in F["categories"].items()) + '</select></div>',
+    "whatnot": lambda F: '<div class=full><label for=wnCat>Category (baseline estimate)</label><select id=wnCat>' +
+        "".join(f'<option value="{k}">{esc(v["label"])}</option>' for k, v in F["categories"].items()) +
+        '</select></div><div class=full><label for=wnRate>Your exact Seller Hub commission rate (%) (optional)</label><input id=wnRate type=number min=0 max=100 step=0.1 placeholder="Use Seller Hub rate" inputmode=decimal><p class=note>Whatnot rates change with your four-week sales tier and category. Blank uses an entry-tier estimate; not a confirmed payout.</p></div>',
     "paypal": lambda F: '<div class=full><label for=ppMode>Payment type</label><select id=ppMode>' +
         "".join(f'<option value="{k}">{esc(v["label"])}</option>' for k, v in F["modes"].items()) +
         '</select></div><div class=full><label class=check><input id=intl type=checkbox> Payment from outside the US</label></div>',
@@ -130,7 +131,7 @@ def page(path, title, desc, body, schema=None, crumbs=None):
 {gsc}
 {ld}</head><body>
 <header class="site"><div class="wrap"><a class="logo" href="{url('')}">Payout<span>Math</span></a>
-<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
+<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('worldwide/')}">Worldwide calculator</a><a href="{url('selling-costs/')}">Selling costs</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a><a href="{url('directory/')}">Directory</a><a href="{url('workspace/')}">Workspace</a></nav></div></header>
 {crumb_html}
 <main class="wrap">
 {body}
@@ -140,6 +141,7 @@ def page(path, title, desc, body, schema=None, crumbs=None):
 <p><a href="{url('about/')}">About</a> · <a href="{url('privacy/')}">Privacy</a> · <a href="{url('marketplace-fees/')}">Fee sources</a></p>
 <p class="note">Some links are affiliate links: if you sign up through them we may earn a commission at no cost to you.</p>
 </div></footer>
+<script defer src="{url('motion.js')}"></script>
 </body></html>"""
     out = DIST / path / "index.html" if path else DIST / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -193,7 +195,7 @@ def build():
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
-    for f in ("calc.js", "ui.js", "style.css"):
+    for f in ("calc.js", "ui.js", "style.css", "motion.js"):
         shutil.copy(ROOT / "src" / f, DIST / f)
     (DIST / "fees.js").write_text("window.FEES=" + json.dumps(FEES, separators=(",", ":")) + ";")
     (DIST / "favicon.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0f7b5f"/><text x="16" y="22" font-size="18" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="700">$</text></svg>')
@@ -281,7 +283,7 @@ def build():
     # ---- home: compare
     qa = [
         ("Which marketplace has the lowest seller fees?", "It depends on the price. Depop (no US selling fee) and Mercari (flat 10%) usually leave you the most on everyday items, while Poshmark's 20% and flat $2.95 under $15 take the most. Use the calculator with your own price, shipping and cost."),
-        ("Do fees apply to shipping and sales tax?", "On eBay, Depop, Etsy and Whatnot the payment or final value percentage is charged on a total that includes the tax the buyer pays. Mercari charges on item plus buyer-paid shipping. Poshmark charges on the sale price."),
+        ("Do fees apply to shipping and sales tax?", "eBay final value fees and Depop, Etsy and Whatnot payment processing fees can be charged on totals including buyer-paid shipping and sales tax. Whatnot selling commission is on item price and varies by seller tier and category; check Seller Hub. Mercari charges on item plus buyer-paid shipping, and Poshmark on sale price."),
         ("How often are the fees updated?", f"Each fee is checked against the platform's published fee page. Last check: {CHECKED}. A monitor watches those pages for changes."),
     ]
     links = "".join(f"<li><a href='{url(P[k]['slug'] + '/')}'>{esc(P[k]['keyword'])}</a></li>" for k in P)
@@ -290,6 +292,9 @@ def build():
     body = f"""<h1>Where do you keep the most money?</h1>
 <p class=lede>Put in one sale and see what eBay, Poshmark, Mercari, Depop, Etsy and Whatnot each take, and what you actually profit. Free, no sign-up, fees checked {CHECKED}.</p>
 {calc_block('compare', None, 'Your sale')}
+<p class=note>Comparison uses publicly described US starting-tier marketplace rates. Actual Whatnot commissions vary by seller volume, category, market, and promotions; compare the personalized figure on its calculator using your Seller Hub rate.</p>
+<p class=note><a href="{url('worldwide/')}">Selling outside the United States? Open the worldwide calculator for verified Etsy bank-country processing rates or a custom fee scenario. US presets above are not global rates.</a></p>
+<p class=note><a href="{url('selling-costs/')}">Model shipping, packaging, discounts and returns with our selling-costs planner.</a> Rates must come from your seller statement.</p>
 <h2>Fee calculator for each marketplace</h2><ul class=grid-links>{links}</ul>
 {cta()}
 <h2>Quick answers</h2><p class=note>{popular}</p>
@@ -338,7 +343,15 @@ def build():
     nf = _re.sub(r'<link rel="canonical"[^>]*>', '<meta name="robots" content="noindex">', nf, count=1)
     (DIST / "404.html").write_text(nf)
 
+    from seller_scenarios import build_seller_scenarios
+    build_seller_scenarios(page, url, ROOT, DIST, CHECKED)
+    from worldwide import build_worldwide
+    build_worldwide(page, url, ROOT, DIST, CHECKED)
+
     # ---- sitemap / robots
+    from expanded import build_expanded
+    build_expanded(page, url, ROOT, DIST, CHECKED)
+
     today = datetime.date.today().isoformat()
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"<url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in SITEMAP) + "</urlset>\n")
