@@ -131,7 +131,7 @@ def page(path, title, desc, body, schema=None, crumbs=None):
 {gsc}
 {ld}</head><body>
 <header class="site"><div class="wrap"><a class="logo" href="{url('')}">Payout<span>Math</span></a>
-<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('worldwide/')}">Worldwide calculator</a><a href="{url('selling-costs/')}">Selling costs</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
+<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('worldwide/')}">Worldwide calculator</a><a href="{url('selling-costs/')}">Selling costs</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a><a href="{url('directory/')}">Directory</a><a href="{url('workspace/')}">Workspace</a></nav></div></header>
 {crumb_html}
 <main class="wrap">
 {body}
@@ -349,6 +349,9 @@ def build():
     build_worldwide(page, url, ROOT, DIST, CHECKED)
 
     # ---- sitemap / robots
+    from expanded import build_expanded
+    build_expanded(page, url, ROOT, DIST, CHECKED)
+
     today = datetime.date.today().isoformat()
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"<url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in SITEMAP) + "</urlset>\n")
