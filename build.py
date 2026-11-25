@@ -126,14 +126,14 @@ def page(path, title, desc, body, schema=None, crumbs=None):
 {gsc}
 {ld}</head><body>
 <header class="site"><div class="wrap"><a class="logo" href="{url('')}">Payout<span>Math</span></a>
-<nav class="top"><a href="{url('')}">Compare</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
+<nav class="top"><a href="{url('')}">Seller fees</a><a href="{url('prop-firm-calculator/')}">Funded traders</a><a href="{url('marketplace-fees/')}">All fees</a><a href="{url('reseller-profit-tracker/')}">Free tracker</a></nav></div></header>
 {crumb_html}
 <main class="wrap">
 {body}
 </main>
 <footer class="site"><div class="wrap">
-<p><b>{BRAND}</b> is a free set of seller fee calculators for resellers. Fees last checked {CHECKED} against each platform's published fee pages. Estimates only; your platform's sales report is the final word.</p>
-<p><a href="{url('about/')}">About</a> · <a href="{url('privacy/')}">Privacy</a> · <a href="{url('marketplace-fees/')}">Fee sources</a></p>
+<p><b>{BRAND}</b> is a free set of calculators for resellers and funded futures traders. Seller fees last checked {CHECKED} against each platform's published fee pages. Every result is an estimate: your platform's sales report, or your prop firm's dashboard, is the final word.</p>
+<p><a href="{url('about/')}">About</a> · <a href="{url('privacy/')}">Privacy</a> · <a href="{url('marketplace-fees/')}">Fee sources</a> · <a href="{url('prop-firm-comparison/')}">Prop firm rule sources</a></p>
 <p class="note">Some links are affiliate links: if you sign up through them we may earn a commission at no cost to you.</p>
 </div></footer>
 </body></html>"""
@@ -281,14 +281,24 @@ def build():
         ("How often are the fees updated?", f"Each fee is checked against the platform's published fee page. Last check: {CHECKED}. A monitor watches those pages for changes."),
     ]
     links = "".join(f"<li><a href='{url(P[k]['slug'] + '/')}'>{esc(P[k]['keyword'])}</a></li>" for k in P)
+    PROP_LINKS = "".join(f"<li><a href='{url(p)}'>{esc(n)}</a></li>" for p, n in [
+        ("consistency-rule-calculator/", "Consistency rule calculator"), ("prop-firm-payout-calculator/", "Prop firm payout calculator"),
+        ("trailing-drawdown-calculator/", "Trailing drawdown calculator"), ("profit-target-calculator/", "Profit target planner"),
+        ("futures-position-size-calculator/", "Futures position size calculator"), ("prop-firm-comparison/", "Prop firm comparison"),
+        ("topstep-rules/", "Topstep rules"), ("tradeify-rules/", "Tradeify rules"), ("myfundedfutures-rules/", "MyFundedFutures rules")])
     popular = " · ".join(f"<a href='{url(f'how-much-does-{k}-take-from-{p}/')}'>{P[k]['name']} ${p}</a>" for k in MARKETS for p in (20, 50, 100))
     desc = "Free seller fee calculator for eBay, Poshmark, Mercari, Depop, Etsy and Whatnot. Compare fees side by side and see where you keep the most profit."
     body = f"""<h1>Where do you keep the most money?</h1>
-<p class=lede>Put in one sale and see what eBay, Poshmark, Mercari, Depop, Etsy and Whatnot each take, and what you actually profit. Free, no sign-up, fees checked {CHECKED}.</p>
+<p class=lede>Free calculators for resellers and funded traders. Put in one sale and see what eBay, Poshmark, Mercari, Depop, Etsy and Whatnot each take, and what you actually profit. Free, no sign-up, fees checked {CHECKED}.</p>
+<ul class="grid-links two"><li><a href="#pm">I sell on marketplaces<small>Fee and profit calculators for eBay, Poshmark, Mercari, Depop, Etsy and Whatnot.</small></a></li>
+<li><a href="{url('prop-firm-calculator/')}">I trade a funded account<small>Consistency rule, payout, drawdown and profit target tools for Topstep, Tradeify and MyFundedFutures.</small></a></li></ul>
 {calc_block('compare', None, 'Your sale')}
 <h2>Fee calculator for each marketplace</h2><ul class=grid-links>{links}</ul>
 {cta()}
 <h2>Quick answers</h2><p class=note>{popular}</p>
+<h2>For funded futures traders</h2>
+<p>Trading a prop firm evaluation or funded account? The same plain math, for prop firm rules.</p>
+<ul class=grid-links>{PROP_LINKS}</ul>
 {faq_html(qa)}"""
     page("", f"Seller Fee Calculator {YEAR}: eBay, Poshmark, Mercari, Depop & More", desc, body,
          [app_schema("PayoutMath seller fee calculator", "", desc), faq_schema(qa),
@@ -318,9 +328,9 @@ def build():
 
     # ---- about / privacy / 404
     page("about/", f"About {BRAND}", f"{BRAND} is a free set of seller fee and profit calculators for eBay, Poshmark, Mercari, Depop, Etsy and Whatnot resellers. Here is where the numbers come from.",
-         f"""<h1>About {BRAND}</h1><p>{BRAND} is a free set of seller fee calculators for people who resell on eBay, Poshmark, Mercari, Depop, Etsy and Whatnot.</p>
-<p>Every fee comes from the platform's own published fee page where one is available, and each page says where its numbers came from and when they were last checked. The math runs in your browser; nothing you type is sent anywhere.</p>
-<p>{BRAND} isn't affiliated with any of the marketplaces it covers.</p>""", crumbs=[("Home", ""), ("About", "about/")])
+         f"""<h1>About {BRAND}</h1><p>{BRAND} is a free set of calculators for people who resell on eBay, Poshmark, Mercari, Depop, Etsy and Whatnot, and for futures traders in prop firm evaluations and funded accounts.</p>
+<p>Every fee and prop firm rule comes from the company's own published page where one is available, and each page says where its numbers came from and when they were last checked. The math runs in your browser; nothing you type is sent anywhere.</p>
+<p>{BRAND} isn't affiliated with any of the marketplaces or prop firms it covers, and nothing here is trading or financial advice.</p>""", crumbs=[("Home", ""), ("About", "about/")])
     page("privacy/", f"Privacy policy | {BRAND}", f"How {BRAND} handles your data: the calculators run in your browser, nothing you type is stored, and some links are affiliate links.",
          f"""<h1>Privacy policy</h1><p>Last updated {CHECKED}.</p>
 <p>The calculators run entirely in your browser. The numbers you enter aren't sent to us or stored on a server.</p>
@@ -333,6 +343,11 @@ def build():
     nf = _re.sub(r"<title>.*?</title>", f"<title>Page not found | {BRAND}</title>", nf, count=1)
     nf = _re.sub(r'<link rel="canonical"[^>]*>', '<meta name="robots" content="noindex">', nf, count=1)
     (DIST / "404.html").write_text(nf)
+
+    # ---- funded-trader section
+    from prop_pages import build_prop
+    build_prop({"page": page, "esc": esc, "url": url, "ROOT": ROOT, "DIST": DIST,
+                "faq_html": faq_html, "faq_schema": faq_schema, "app_schema": app_schema})
 
     # ---- sitemap / robots
     today = datetime.date.today().isoformat()
