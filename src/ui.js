@@ -6,7 +6,7 @@
   var key = root.getAttribute("data-platform");        // for single
   var $ = function (id) { return document.getElementById(id); };
   var money = function (n) { return (n < 0 ? "-$" : "$") + Math.abs(n).toFixed(2); };
-  var fields = ["price", "ship", "shipCost", "cost", "taxRate", "adRate", "boostRate", "target"];
+  var fields = ["price", "ship", "shipCost", "cost", "taxRate", "adRate", "boostRate", "wnRate", "target"];
   var checks = ["boost", "offsite", "bigShop", "intl"];
   var selects = ["ebayCat", "wnCat", "ppMode"];
 

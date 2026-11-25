@@ -188,9 +188,9 @@
       "name": "Whatnot",
       "slug": "whatnot-fee-calculator",
       "keyword": "Whatnot fee calculator",
-      "source": "https://help.whatnot.com/hc/en-us/articles/4847069165965-Whatnot-s-Selling-and-Processing-Fees",
-      "source_note": "Whatnot Help Center, selling and processing fees",
-      "summary": "8% commission on the sale price (not shipping or tax), plus 2.9% + $0.30 processing on the full order total. For now, comics, trading cards, sports singles, toys and coins pay 0% commission on the part of a sale above $1,500.",
+      "source": "https://help.whatnot.com/hc/en-us/articles/4847069165965-Whatnot-seller-fees",
+      "source_note": "Whatnot Help Center, seller fees: tiered commission effective September 21, 2026",
+      "summary": "Whatnot commission varies by seller tier, category and market. The initial US baseline is up to 8% of the item price (4% for coins); the seller's exact rate is in Seller Hub. Processing is typically 2.9% + $0.30 on the buyer's order total. Enter your own rate for an accurate estimate.",
       "categories": {
         "most": {
           "label": "Most categories",
@@ -200,21 +200,22 @@
         "collectibles": {
           "label": "Comics, TCG, sports singles, toys and hobbies",
           "rate": 0.08,
-          "zero_above": 1500
+          "zero_above": null
         },
         "coins": {
           "label": "Coins and money",
           "rate": 0.04,
-          "zero_above": 1500
+          "zero_above": null
         }
       },
       "proc_rate": 0.029,
       "proc_fixed": 0.3,
       "monitor_strings": [
-        "8%",
-        "2.9%",
-        "0.30"
-      ]
+        "commission",
+        "2.9%"
+      ],
+      "rate_note": "Since September 21, 2026, seller tiers update by sales volume over four-week periods. The 8% general / 4% coins values are starting-tier examples, not guaranteed rates. Use the commission rate shown in your Whatnot Seller Hub; limited-time promotions and seller-specific rates are excluded.",
+      "tier_source": "https://www.whatnot.com/seller/fees"
     },
     "paypal": {
       "name": "PayPal",
