@@ -1,0 +1,22 @@
+"""Interactive research directory and user-input scenario workspace."""
+import json, html, shutil
+def build_expanded(page, url, ROOT, DIST, CHECKED):
+    e = html.escape
+    records = json.loads((ROOT / "data/directory.json").read_text())
+    categories = sorted(set(r["category"] for r in records))
+    opts = "".join(f'<option value="{e(c)}">{e(c)}</option>' for c in categories)
+    cards = []
+    for r in records:
+        name, category = e(r["name"]), e(r["category"])
+        known = r["status"] == "sourced-preset"
+        status = "Existing sourced preset — verify plan and region" if known else "Research pending — no verified preset"
+        link = url(r["path"]) if known else url("workspace/")
+        action = "View existing calculator" if known else "Use manual scenario"
+        cards.append(f'<article class="directory-card card" data-category="{category}" data-status="{r["status"]}" data-name="{name.lower()}"><small>{category}</small><h3>{name}</h3><p class="note">{status}</p><a class="btn" href="{link}">{action}</a></article>')
+    directory = f"""<section class="experience-hero"><div class="eyebrow">GLOBAL RESEARCH DIRECTORY</div><h1>Find your next selling channel.</h1><p class="lede">Discover research targets and existing sourced presets. Listing is not proof of current availability or eligibility.</p><div class="metric-strip"><strong>{len(records)}</strong> research entries <span>•</span> <strong>{sum(r["status"]=="sourced-preset" for r in records)}</strong> existing preset entries</div></section><section class="filter-panel card"><div class="fields"><div><label for="directory-search">Search by name</label><input id="directory-search" type="text" placeholder="Search directory"></div><div><label for="directory-category">Category</label><select id="directory-category"><option value="">All categories</option>{opts}</select></div><div><label for="directory-status">Data status</label><select id="directory-status"><option value="">All statuses</option><option value="sourced-preset">Existing sourced preset</option><option value="research-needed">Research pending</option></select></div></div><p id="directory-count" role="status"></p></section><div class="directory-grid" id="directory-grid">{''.join(cards)}</div><p class="note">Research entries are not endorsements. Check official terms before paying or applying.</p><script defer src="{url('expanded.js')}"></script>"""
+    page("directory/", "Global marketplace directory", "Search existing sourced presets and research targets.", directory)
+    fields = [["price","Unit selling price"],["units","Units sold"],["cost","Unit product cost"],["shipping","Unit fulfillment cost"],["rate","Total variable fee %"],["fixed","Fixed fee per sale"],["overhead","Period overhead"],["refund","Expected full refund %"],["fx","Conversion cost %"]]
+    controls = "".join(f'<div><label for="ws-{key}">{label}</label><input id="ws-{key}" data-field="{key}" type="number" min="0" step="any" required placeholder="Enter value"></div>' for key,label in fields)
+    body = f"""<section class="experience-hero"><div class="eyebrow">INTERACTIVE WORKSPACE</div><h1>Model your business economics.</h1><p class="lede">Calculate a period's estimated profit, retained revenue and break-even price using your own cost assumptions. All inputs must use a consistent source currency. No live rates or eligibility are implied.</p></section><section class="calc" id="expanded-workspace" data-mode="seller"><form class="card" id="workspace-form"><h2>Scenario inputs</h2><p class="note">Enter every field; use 0 where a fee or cost does not apply.</p><div class="fields">{controls}</div><button class="btn" type="submit">Calculate scenario</button></form><div class="card"><h2>Scenario analysis</h2><div id="workspace-result" aria-live="polite">Enter assumptions to calculate.</div><div id="workspace-chart" class="analysis-chart"></div><button id="workspace-export" type="button" class="btn" disabled>Download results CSV</button></div></section><section class="card"><h2>Model boundaries</h2><p>Refunds reduce gross revenue; costs and fees are conservatively retained on all original sales. Taxes and fee refunds are excluded; variable fees apply to gross sales in this simplified model.</p></section><script defer src="{url('expanded.js')}"></script>"""
+    page("workspace/", "Seller profitability workspace", "Interactive manual financial scenario with explicit assumptions.", body)
+    shutil.copy(ROOT / "src/expanded.js", DIST / "expanded.js")
