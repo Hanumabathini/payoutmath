@@ -37,8 +37,3 @@ details{border-bottom:1px solid var(--line);padding:10px 0}summary{cursor:pointe
 footer.site{margin-top:48px;border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.88rem}
 footer.site a{color:var(--muted)}
 .crumbs{font-size:.85rem;color:var(--muted);margin-top:16px}.crumbs a{color:var(--muted)}
-.warn{border-left:4px solid var(--warn);background:var(--card);padding:10px 14px;border-radius:8px;margin:18px 0;font-size:.92rem}
-textarea{width:100%;padding:10px 12px;font:1rem/1.4 ui-monospace,monospace;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
-.grid-links a small{display:block;font-weight:400;color:var(--muted);font-size:.82rem;margin-top:4px}
-.grid-links.two{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-table.compare th{vertical-align:top;font-size:.9rem}table.compare td{vertical-align:top}

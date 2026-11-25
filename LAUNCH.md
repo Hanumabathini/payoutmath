@@ -1,6 +1,6 @@
 # PayoutMath launch guide
 
-PayoutMath is a free calculator site with two sections: fee and profit calculators for people who resell on eBay, Poshmark, Mercari, Depop, Etsy, Whatnot and PayPal, and prop firm tools for funded futures traders (consistency rule, payout, trailing drawdown, profit target, position size, and Topstep, Tradeify and MyFundedFutures rules). It is finished and tested. Everything below costs $0.
+PayoutMath is a free fee and profit calculator site for people who resell on eBay, Poshmark, Mercari, Depop, Etsy, Whatnot and PayPal. It is finished and tested. Everything below costs $0.
 
 Only four steps need you, because each one needs your own account. Do them in order. Each takes about 5 to 10 minutes.
 
@@ -24,17 +24,6 @@ This is the payout account. The site's buttons send resellers to Crosslist, a to
 
 When you have your affiliate link, add one more repository variable, `CROSSLIST_URL`, set to that link, then run **Deploy site** again. Every button on every page switches to your link.
 
-## Step 2b (optional). Prop firm affiliate programs
-
-The funded-trader pages have no affiliate links yet. Each firm runs its own program, and each signup is yours to do:
-
-- **Tradeify:** tradeify.co/affiliate-program. 10% to 15% or more on new account purchases, $5 on resets, paid by the 15th of the next month once you pass $1,000.
-- **MyFundedFutures:** apply from the MFFU dashboard. Pays on evaluation and reset fees (the rate isn't published), with a $100 monthly minimum.
-- **Topstep:** approval only, by email to partners@topstep.com. The rate isn't published.
-- **Apex Trader Funding:** has a program, but its pages couldn't be read, so its terms are unknown.
-
-Read each program's terms first; most ban paid search ads on the firm's name. When you have links, send them to me and I'll add them to the firm pages with a clear disclosure.
-
 ## Step 3. Tell Google and Bing the site exists (free)
 
 1. Go to Google Search Console, add the site as a **URL prefix** property (`https://hanumabathini.github.io/payoutmath/`) and choose the **HTML tag** method.
@@ -55,8 +44,6 @@ Ad networks such as Google AdSense will not accept a `github.io` address. When t
 ## Files
 
 - `data/fees.json` holds every fee rule with its source link and the date it was checked.
-- `data/prop.json` holds the prop firm rules and presets, each with its source pages and the date they were read (November 25, 2026). Prop firms change rules often, so these need a re-check about once a month; ask me to do it.
 - `src/calc.js` is the one fee engine. The live calculators and the built pages both use it, so their numbers always match.
-- `src/prop.js` is the funded-trader engine, and `prop_pages.py` builds those pages.
-- `build.py` builds the 85 pages into `dist/` (`python3 build.py`, needs Python 3 and Node).
+- `build.py` builds the 72 pages into `dist/` (`python3 build.py`, needs Python 3 and Node).
 - `scripts/check_fees.py` is the weekly fee check.
