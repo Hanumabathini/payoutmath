@@ -31,6 +31,12 @@ When you have your affiliate link, add one more repository variable, `CROSSLIST_
 3. In Search Console, open **Sitemaps** and submit `sitemap.xml`.
 4. In Bing Webmaster Tools, choose **Import from Google Search Console**. That covers Bing, DuckDuckGo and Yahoo.
 
+## Optional. Count visitors without cookies (Cloudflare Web Analytics, free)
+
+1. Create a free Cloudflare account, open **Web Analytics**, and add the site `hanumabathini.github.io/payoutmath` (choose the JavaScript snippet option, no DNS change needed).
+2. Copy only the token from the snippet (the value after `"token": `) and save it as a repository variable named `CF_ANALYTICS_TOKEN`, then run **Deploy site**.
+3. Visits show up in your Cloudflare dashboard. Without the variable the site loads no analytics at all.
+
 ## Step 4 (later, optional). Ads, once there is traffic
 
 Ad networks such as Google AdSense will not accept a `github.io` address. When the site gets about 100 visitors a day, buy a domain (about $10 a year), point it at the site, and apply to AdSense. Until then, Crosslist is the income.

@@ -27,6 +27,7 @@ jobs:
           BASE_PATH: ${{ vars.BASE_PATH }}
           CROSSLIST_URL: ${{ vars.CROSSLIST_URL }}
           GSC_TOKEN: ${{ vars.GSC_TOKEN }}
+          CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
         run: python3 build.py
       - uses: actions/upload-pages-artifact@v3
         with:
